@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fbfb;
+            color: #212529;
+        }
+        a{
+            text-decoration: none;
+            color: inherit;
+        }
+        ul{
+            list-style: none;
+        }
+        .container{
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+        header{
+            background: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-top{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 15px 0;
+         a{
+              font-weight: bold;
+              font-size: 35px;
+
+            }
+        }
+        .header-icons a{
+          font-size: 25px;
+        }
+        .logo{
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #20f4f8;
+            text-shadow: 0 4px 6px black;
+            transition: 0.5s;
+        }
+        .logo:hover{
+          font-size: 2.7rem;
+
+        }
+        .logo span{
+            color: #20f4f8;
+            background-color: black;
+            border-radius: 10px;
+            padding: 5px;
+            /* text-shadow: 0 -4px 6px white; */
+            transition: 0.5s; 
+        }
+        .logo span:hover{
+          color: black;
+          background-color: #00eeff;
+          font-size: 2rem;
+        }
+        .search-bar{
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+            position: relative;
+        }
+        .search-bar input{
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 30px;
+            font-size: 1rem;
+        }
+        .search-bar button{
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: #010101;
+            color: #20f4f8;
+            border-radius: 30px;
+            padding: 5px 15px;
+            border: none;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+        .search-bar button:hover{
+            font-size: x-large;
+        }
+        .header-icons{
+            display: flex;
+            gap: 20px;
+        }
+        .icon-link{
+            position: relative;
+            font-size: 1.3rem;
+            color: #212529;
+        }
+        .cart-count{
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #20f4f8;
+            color: #fff;
+            text-shadow: 0 0 5px black;
+            font-size: 0.7rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        nav{
+            background: black;
+        }
+        .nav-links{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .nav-links li{
+            padding: 15px 20px;
+        }
+        .nav-links a{
+            position: relative;
+            color: #20f4f8;
+            font-weight: 700;
+            font-size: large;
+            transition: 0.5s;
+        }
+        .nav-links a:hover{
+            font-size: 22px;
+        }
+        .nav-links a:hover::after{
+            width: 100%;
+        }
+        .nav-links a::after{
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: rgb(255, 251, 251);
+            box-shadow: 0 05px aqua, 0 0 5px aqua, 0 0 10px aqua, 0 0 15px aqua;
+            transition: 0.3s ease;
+        }
+        @media (max-width: 768px){
+            .header-top{
+                flex-direction: column;
+            }
+            .logo{
+                margin-bottom: 10px;
+                width: -5px;
+                font-size: 1.7rem;
+            }
+            .search-bar{
+                margin: 15px 0;
+                max-width: 220px;
+            }
+        }
+        @media (max-width: 480px){
+            .nav-links{
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        .heading h1{
+            background-color: #010101;
+            color: #20f4f8;
+            font-size: x-large;
+            text-align: center;
+            justify-content: center;
+            font-size: xx-large;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .heading h1 span{
+            color: red;
+            font-family: love;
+            font-size: xxx-large;
+        }
+        marquee{
+            font-weight: bolder;
+            font-style:inherit;
+            background: #20f4f8; 
+            font-size: x-large;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        marquee span{
+            font-family: Love;
+            font-size: 2rem;
+            color: rgba(255, 4, 4, 0.864);
+            font-weight: bolder;
+        }
+        @font-face {
+            font-family: Love;
+            src: url(Sometime.otf);
+        }
+        /* Hero Section */
+.hero {
+  background: linear-gradient(to right, #20f4f8, #4cc9f0);
+  color: #fff;
+  padding: 60px 0;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  text-shadow: 0 0 5px rgb(0, 0, 0, 0.5);
+
+
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  text-shadow: 0 0 5px rgb(0, 0, 0, 0.2);
+}
+
+.hero-btn {
+  background: #20f4f8;
+  color: #000000;
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  transition: 0.5s;
+  box-shadow: 0 0 5px black, 0 0 10px black;
+}
+
+.hero-btn:hover{
+  background: #000000;
+  color: #20f4f8;
+  padding: 15px 30px;
+  font-size: 1.5rem;
+}
+
+/* Section Titles */
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin: 40px 0 20px;
+  color: #212529;
+  transition: 0.3s;
+}
+.section-title:hover{
+  font-size: 2.5rem;
+}
+/* Categories Section */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  padding-bottom: 30px;
+}
+
+.category-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  padding: 15px;
+  text-align: center;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 0 5px rgb(0, 0, 0, 0.5);
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+ 
+}
+
+.category-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+/* Products Section */
+.products {
+  padding: 40px 0;
+  background: #f1f5f9;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  transition: 0.3s ease;
+  box-shadow: 0 0 5px rgb(0, 0, 0, 0.3);
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.product-card h3 {
+  font-size: 1rem;
+  margin: 10px 0 5px;
+}
+
+.price {
+  color: #4361ee;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.cart-btn {
+  background: #20f4f8;
+  color: #000000;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.3s;
+
+}
+.cart-btn:hover{
+  background-color: black;
+  color: #20f4f8;
+  font-size: 1.2rem;
+  padding: 10px 18px;
+  font-weight: 600;
+}
+    /* body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f2f2f2;
+    } */
+
+    .footer {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 30px 20px;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .footer-col {
+      flex: 1 1 220px;
+      margin: 10px 0;
+    }
+
+    .footer-col h4 {
+      background: linear-gradient(45deg, #00eeff, #37c9e2e3, #9d00ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 10px;
+      font-size: 22px;
+    
+    }
+
+    .footer-col p{
+      color: #ccc;
+      font-size: 16px;
+
+    }
+    .footer-col a {
+      color: #ccc;
+      font-size: 14px;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 8px;
+      transition: 0.4s;
+    }
+
+    .footer-col a:hover {
+      color: #20f4f8;
+      font-size: 20px;
+      padding: 8px;
+    }
+
+    .contact-links i,
+    .social-links i {
+      margin-right: 8px;
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin-right: 12px;
+      color: #ffffff;
+      font-size: 20px;
+      transition: 0.5s;
+      padding: 5px;
+    }
+
+    .social-links a:hover {
+      color: #ffffff;
+      padding: 10px;
+      font-size: 18px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      font-size: 13px;
+      color: #aaa;
+      margin-top: 20px;
+      border-top: 1px solid #333;
+      padding-top: 10px;
+    }
+    .facebook{
+      background-color: #4361ee;
+      border-radius: 100px 100px;
+      
+    }
+    .twitter{
+      background-color: #35bbfe;
+      border-radius: 100px 100px;
+      
+    }
+    .instagram{
+      background-color: #f83cbcdd;
+      border-radius: 100px 100px;
+    }
+    .youtube{
+      background-color: red;
+      border-radius: 100px 100px;
+    }
+    .tiktok{
+      background-color: black;
+      border-radius: 100px 100px;
+      box-shadow: 0 0 2px white;
+      
+    }
+
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-col {
+        margin: 15px 0;
+      }
+
+      .social-links {
+        justify-content: center;
+}
+}
+
+    
+  </style>
+</head>
+<body>
+    <div class="heading">
+        <h1><span>Welcome</span> To My Store </h1>
+
+    </div>
+    
+    <!-- <marquee behavior="" direction=""> <span>Welcome</span> To My Store </marquee> -->
+    <marquee behavior="" direction="">Our Unique Store is a one-stop shop where quality, shopping and variety are provided in one place. We provide customers with all their essential produce for daily use under one roof.</marquee>
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <a href="#" class="logo">UNIQUE <span>STORE</span></a>
+                <!-- <a href="#">جو نام ہے اعتماد کا</a> -->
+                <div class="search-bar">
+                    <input type="text" placeholder="Search For Products.....">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="header-icons">
+                    <a href="#" class="icon-link"><i class="fas fa-user"></i></a>
+                    <a href="#" class="icon-link"><i class="fas fa-heart"></i><span class="cart-count">9+</span></a>
+                    <a href="#" class="icon-link"><i class="fas fa-shopping-cart"></i><span class="cart-count">3</span></a>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Deals</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header><br>
+    <!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Discover the Best Deals Today!</h1>
+      <p>Shop top categories with amazing discounts and fast delivery.</p>
+      <a href="#" class="hero-btn">Shop Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- Categories Section -->
+<section class="categories">
+  <div class="container">
+    <h2 class="section-title">Top Categories</h2>
+    <div class="category-grid">
+      <div class="category-card">
+      <img src="Electronics.jpg.jpg" alt="Electronics">
+        <h3>Electronics</h3>
+      </div>
+      <div class="category-card">
+        <img src="Fashion.jpg" alt="Fashion">
+        <h3>Fashion</h3>
+      </div>
+      <div class="category-card">
+        <img src="Home.jpg" alt="Home & Decor">
+        <h3>Home & Decor</h3>
+      </div>
+      <div class="category-card">
+        <img src="Beauty.jpg.jpg" alt="Beauty">
+        <h3>Beauty</h3>
+      </div>
+      <div class="category-card">
+        <img src="Printing.png" alt="Print Hub">
+        <h3>Print Hub</h3>
+      </div>
+      <div class="category-card">
+        <img src="stationeries.webp" alt="Stationary">
+        <h3>Stationary</h3>
+      </div>
+           <div class="category-card">
+        <img src="Bags.jpg" alt="Bags">
+        <h3>Bags</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Products Section -->
+<section class="products">
+  <div class="container">
+    <h2 class="section-title">Featured Products</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="Watch.jpeg" alt="Smart Watch">
+        <h3>Smart Watch</h3>
+        <p class="price">$49.99</p>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="Headphone.jpeg" alt="Headphones">
+        <h3>Wireless Headphones</h3>
+        <p class="price">$29.99</p>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="Speakers.webp" alt="Bluetooth Speaker">
+        <h3>Bluetooth Speaker</h3>
+        <p class="price">$34.99</p>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="Fitness.jpeg" alt="Fitness Tracker">
+        <h3>Fitness Tracker</h3>
+        <p class="price">$39.99</p>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="Mouse.png" alt="Gaming Mouse">
+        <h3>Gaming Mouse</h3>
+        <p class="price">$24.99</p>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="LCD Writing Tablet.webp" alt="LCD Writing Tablet ">
+        <h3>LCD Writing Tablet</h3>
+        <p class="price">$4.99</p>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="Stand.jpeg" alt="Phone Stand">
+        <h3>Smartphone Stand</h3>
+        <p class="price">$12.99</p>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="School Bags.avif" alt="School Bag">
+        <h3>School Bags for Boys & Girls</h3>
+        <p class="price">$20.99</p>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="Hand Bags.jpg" alt="Hand Bags">
+        <h3>Hand Bags</h3>
+        <p class="price">$15.99</p>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+       <div class="product-card">
+        <img src="Men's Wallet.avif" alt="Men's Wallet">
+        <h3>Men's Wallet</h3>
+        <p class="price">$9.99</p>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="Travelling Hiking Bags.avif" alt="Travelling Hiking Bags">
+        <h3>Travelling Hiking Bags</h3>
+        <p class="price">$13.99</p>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="Luggage Bags.webp" alt="Luggage Bags">
+        <h3>Luggage Bags</h3>
+        <p class="price">$199.99</p>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="Gift Bag.jpg" alt="Gift Bag">
+        <h3>Gift Bags</h3>
+        <p class="price">$2.99</p>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="Mug Print.webp" alt=" Magic Mug">
+        <h3>Magic Mug</h3>
+        <p class="price">$7.99</p>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="Color Mug.jpg" alt="Color Mug">
+        <h3>Color Mug</h3>
+        <p class="price">$3.99</p>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="Bottle.jpg" alt="Bottle ">
+        <h3>Bottle <br>
+        Print On Your Dimand</h3><br>
+        <p class="price">$3.99</p><br>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="Shirt Print.webp" alt="Shirt Print">
+        <h3>Shirts</h3>
+        <p class="price">$4.99</p>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+       <div class="product-card">
+        <img src="Key Chain.jpg" alt="Key Chain">
+        <h3>Key Chain</h3>
+        <p class="price">$4.99</p>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+       <div class="product-card">
+        <img src="Sticky Note.jpg" alt="Sticky Note">
+        <h3>Sticky Notes</h3>
+        <p class="price">$1.99</p>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+       <div class="product-card">
+        <img src="Scissors.jpg" alt="Scissors">
+        <h3>Scissors</h3>
+        <p class="price">$3.99</p>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="Colors Paper.jpg" alt="Colors Paper">
+        <h3>Colors Paper</h3>
+        <p class="price">$2.99</p>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+       <div class="product-card">
+        <img src="ClipBoard.jpg" alt="ClipBoard">
+        <h3>Clip Board</h3>
+        <p class="price">$6.99</p>
+        <button class="cart-btn">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</section>
+ <!-- Footer Start -->
+  <footer class="footer">
+    <div class="footer-container">
+
+      <div class="footer-col">
+        <h4>About Us</h4>
+        <p>We deliver top-quality products with fast shipping worldwide.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="#">My Account</a>
+        <a href="#">Orders</a>
+        <a href="#">Wishlist</a>
+        <a href="#">Support</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="contact-links">
+          <a href="mailto:support@shopease.com"><i class="fas fa-envelope"></i> support@shopease.com</a>
+          <a href="tel:‪+923496263628‬"><i class="fas fa-phone-alt"></i> ‪+92 349 6263628‬</a>
+          <a href="https://wa.me/923001234567" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="tiktok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2025 ShopEase. All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>
